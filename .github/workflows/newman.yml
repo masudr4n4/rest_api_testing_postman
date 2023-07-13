@@ -19,11 +19,9 @@ jobs:
         with:
           node-version: 14
 
-      - name: Install newman
-        run: npm install -g newman
-      - name: Install extend Reporter
-        run: npm i -g newman-reporter-htmlextra
-
+      - name: Install newman and htmlreports
+        run: npm install -g newman newman-reporter-htmlextra
+        
       - name: Run collection
         run: newman run APITesting.postman_collection_last.json -e PROD.postman_environment.json -r htmlextra --verbose
         
