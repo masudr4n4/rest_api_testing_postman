@@ -20,7 +20,7 @@ jobs:
           node-version: 14
 
       - name: Install newman and htmlreports
-        run: npm install -g newman newman-reporter-htmlextra
+        run: npm install -g newman@5.3.2 newman-reporter-htmlextra@1.22.11
         
       - name: Run collection
         run: newman run APITesting.postman_collection_last.json -e PROD.postman_environment.json -r htmlextra --verbose
