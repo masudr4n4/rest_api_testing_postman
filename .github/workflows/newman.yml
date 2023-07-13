@@ -19,13 +19,20 @@ jobs:
 
       - name: Install newman
         run: npm install -g newman
+      - name: Install extend Reporter
+        run: npm i -g newman-reporter-htmlextra
 
       - name: Run collection
-        run: newman run APITesting.postman_collection_last.json -e PROD.postman_environment.json -r cli,json --reporter-json-export newman-results.json
-
+        run: newman run APITesting.postman_collection_last.json -e PROD.postman_environment.json -r htmlextra --reporter-json-export newman-results.json
+        
+      - name: Find HTML file
+        run: |
+          FILE=$(find . -name "*.html" -type f)
+          echo "FILE=$FILE" >> $GITHUB_ENV  
+          
       - name: Upload results
         uses: actions/upload-artifact@v2
         with:
           name: newman-results
-          path: newman-results.json
+          path: ${{ env.FILE }}
 
