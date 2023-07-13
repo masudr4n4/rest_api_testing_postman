@@ -23,7 +23,7 @@ jobs:
         run: npm i -g newman-reporter-htmlextra
 
       - name: Run collection
-        run: newman run APITesting.postman_collection_last.json -e PROD.postman_environment.json -r htmlextra
+        run: newman run APITesting.postman_collection_last.json -e PROD.postman_environment.json -r htmlextra --verbose
         
       - name: Find HTML file
         run: |
