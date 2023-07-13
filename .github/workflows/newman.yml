@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+  schedule:
+    - cron: '0 * * * *'
 
 jobs:
   run-collection:
@@ -35,4 +37,3 @@ jobs:
         with:
           name: newman-results
           path: ${{ env.FILE }}
-
